@@ -8,6 +8,7 @@ import pandas as pd
 import pickle
 
 app = Flask(__name__)
+
 model = load_model('EmotioNewsV2.h5')
   with open('tokenizer2.pickle', 'rb') as handle:
     tokenizer = pickle.load(handle)
@@ -16,13 +17,13 @@ model = load_model('EmotioNewsV2.h5')
 def home():
     return render_template('index.html')
 
-@app.route('index.html')
+@app.route('/Predict_World_News')
 def predict_World_News():
   model.compile(loss='sparse_categorical_crossentropy',
                   optimizer='adam',
                   metrics=['accuracy'])
-  obtain_stories = pd.read_csv('https://raw.githubusercontent.com/Libazisa/EmoNews/master/World_stories.csv', encoding="UTF-8")
-  obtain_comments = pd.read_csv('https://raw.githubusercontent.com/Libazisa/EmoNews/master/World_comments.csv', encoding="UTF-8")
+  obtain_stories = pd.read_csv('World_stories.csv', encoding="UTF-8")
+  obtain_comments = pd.read_csv('World_comments.csv', encoding="UTF-8")
   stories = obtain_stories
   obtain_comments.columns = ['Sentence','Label']
   sentences = obtain_comments['Sentence']
@@ -130,7 +131,7 @@ def predict_World_News():
   Html_file.close()
   return render_template('World.html')
 
-@app.route('comment.html', methods=['POST'])
+@app.route('/predict_comment', methods=['POST'])
 def predict_comment():
  input_sentence= request.form['message']
  message = [input_sentence]
@@ -151,13 +152,13 @@ def predict_comment():
     message_prediction = 3
  return render_template('emotion.html', prediction = message_prediction) 
 
-@app.route('index.html')
+@app.route('/Predict_African_Stories')
 def Predict_African_Stories():
   model.compile(loss='sparse_categorical_crossentropy',
                   optimizer='adam',
                   metrics=['accuracy'])
-  obtain_stories = pd.read_csv('https://raw.githubusercontent.com/Libazisa/EmoNews/master/African_stories.csv', encoding="UTF-8")
-  obtain_comments = pd.read_csv('https://raw.githubusercontent.com/Libazisa/EmoNews/master/African_comments.csv', encoding="UTF-8")
+  obtain_stories = pd.read_csv('African_stories.csv', encoding="UTF-8")
+  obtain_comments = pd.read_csv('African_comments.csv', encoding="UTF-8")
   stories = obtain_stories
   obtain_comments.columns = ['Sentence','Label']
   sentences = obtain_comments['Sentence']
@@ -263,6 +264,7 @@ def Predict_African_Stories():
   Html_file= open("templates/Africa.html","w")
   Html_file.write(html_string)
   Html_file.close()
+  return render_template('Africa.html')
 
 if __name__=='__main__':
   app.run(debug=True)
