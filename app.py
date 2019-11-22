@@ -56,7 +56,7 @@ def predict_World_News():
   table_frame = pd.DataFrame(list(zip(stories_real,story_sentiment)), columns =['News Stories', 'Story Sentiment'])
   table_frame.columns = ['Story','Sentiment']
   HTML_File = table_frame.to_html()
-  html_string = '''
+  html_string_1 = '''
 <!DOCTYPE HTML>
 <!--
 	EmoNews by TEMPLATED
@@ -126,10 +126,10 @@ def predict_World_News():
 	</body>
 </html>
 '''
-  Html_file= open("templates/World.html","w")
-  Html_file.write(html_string)
-  Html_file.close()
-  return render_template('World.html')
+  #Html_file= open("templates/World.html","w")
+  #Html_file.write(html_string)
+  #Html_file.close()
+  return html_string_1
 
 @app.route('/predict_comment', methods=['POST'])
 def predict_comment():
@@ -191,7 +191,7 @@ def Predict_African_Stories():
   table_frame = pd.DataFrame(list(zip(stories_real,story_sentiment)), columns =['News Stories', 'Story Sentiment'])
   table_frame.columns = ['Story','Sentiment']
   HTML_File = table_frame.to_html()
-  html_string = '''
+  html_string_2 = '''
 <!DOCTYPE HTML>
 <!--
 	EmoNews by TEMPLATED
@@ -261,10 +261,10 @@ def Predict_African_Stories():
 	</body>
 </html>
 '''
-  Html_file= open("templates/Africa.html","w")
-  Html_file.write(html_string)
-  Html_file.close()
-  return render_template('Africa.html')
+  #Html_file= open("templates/Africa.html","w")
+  #Html_file.write(html_string)
+  #Html_file.close()
+  return html_string_2
 
 if __name__=='__main__':
   app.run(debug=True)
