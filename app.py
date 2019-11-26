@@ -23,9 +23,6 @@ def comment():
 
 @app.route('/Predict_World_Stories')
 def predict_World_News():
-  model.compile(loss='sparse_categorical_crossentropy',
-                  optimizer='adam',
-                  metrics=['accuracy'])
   obtain_stories = pd.read_csv('World_stories.csv', encoding="UTF-8")
   obtain_comments = pd.read_csv('World_comments.csv', encoding="UTF-8")
   stories = obtain_stories
@@ -123,12 +120,11 @@ def predict_World_News():
 '''
   return html_string_1
 
-@app.route('/predict_comment', methods=["POST"])
+@app.route('/predict_comment', methods=["POST","GET"])
 def predict_comment():
  if request.method == "POST":
   input_sentence= request.form["message"]
-  message1 = [input_sentence]
-  sequences = tokenizer.texts_to_sequences(message1)
+  sequences = tokenizer.texts_to_sequences(input_sentence)
   data = pad_sequences(sequences, maxlen=200)
   #Exporting and Loading of the Deep Learning Model
   model.compile(loss='sparse_categorical_crossentropy',
