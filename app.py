@@ -10,7 +10,7 @@ import pickle
 app = Flask(__name__)
 
 model = load_model('EmotioNewsV2.h5')
-  with open('tokenizer2.pickle', 'rb') as handle:
+with open('tokenizer2.pickle', 'rb') as handle:
     tokenizer = pickle.load(handle)
 
 @app.route('/')
