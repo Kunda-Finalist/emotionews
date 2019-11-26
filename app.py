@@ -126,23 +126,23 @@ def predict_World_News():
 @app.route('/predict_comment', methods=['POST'])
 def predict_comment():
  if request.method == "POST":
-	input_sentence= request.form['message']
- 	message = [input_sentence]
- 	sequences = tokenizer.texts_to_sequences(message)
- 	data = pad_sequences(sequences, maxlen=200)
- 	#Exporting and Loading of the Deep Learning Model
- 	model.compile(loss='sparse_categorical_crossentropy',
+  input_sentence= request.form['message']
+  message = [input_sentence]
+  sequences = tokenizer.texts_to_sequences(message)
+  data = pad_sequences(sequences, maxlen=200)
+  #Exporting and Loading of the Deep Learning Model
+  model.compile(loss='sparse_categorical_crossentropy',
         	      optimizer='adam',
                	      metrics=['accuracy'])
- 	sentiment = model.predict(data, batch_size=1, verbose = 2)[0]
- 	if(np.argmax(sentiment) == 0):
-    		message_prediction = 0
- 	elif (np.argmax(sentiment) == 1):
-    		message_prediction = 1
- 	elif (np.argmax(sentiment) == 2):
-    		message_prediction = 2
- 	elif (np.argmax(sentiment) == 3):
-    		message_prediction = 3
+  sentiment = model.predict(data, batch_size=1, verbose = 2)[0]
+  if(np.argmax(sentiment) == 0):
+   message_prediction = 0
+  elif (np.argmax(sentiment) == 1):
+   message_prediction = 1
+  elif (np.argmax(sentiment) == 2):
+   message_prediction = 2
+  elif (np.argmax(sentiment) == 3):
+   message_prediction = 3
  return render_template('emotion.html', prediction = message_prediction) 
 
 @app.route('/Predict_African_Stories')
