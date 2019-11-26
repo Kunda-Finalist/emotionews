@@ -16,6 +16,11 @@ with open('tokenizer2.pickle', 'rb') as handle:
 @app.route('/')
 def home():
     return render_template('index.html')
+
+@app.route('/comment')
+def comment():
+    return render_template('comment.html')
+
 @app.route('/Predict_World_News')
 def predict_World_News():
   model.compile(loss='sparse_categorical_crossentropy',
