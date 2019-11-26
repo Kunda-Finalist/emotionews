@@ -123,12 +123,12 @@ def predict_World_News():
 '''
   return html_string_1
 
-@app.route('/predict_comment', methods=['POST'])
+@app.route('/predict_comment', methods=["POST"])
 def predict_comment():
  if request.method == "POST":
-  input_sentence= request.form['message']
-  message = [input_sentence]
-  sequences = tokenizer.texts_to_sequences(message)
+  input_sentence= request.form["message"]
+  message1 = [input_sentence]
+  sequences = tokenizer.texts_to_sequences(message1)
   data = pad_sequences(sequences, maxlen=200)
   #Exporting and Loading of the Deep Learning Model
   model.compile(loss='sparse_categorical_crossentropy',
