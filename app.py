@@ -21,7 +21,7 @@ def home():
 def comment():
     return render_template('comment.html')
 
-@app.route('/Predict_World_News')
+@app.route('/Predict_World_Stories')
 def predict_World_News():
   model.compile(loss='sparse_categorical_crossentropy',
                   optimizer='adam',
@@ -73,19 +73,10 @@ def predict_World_News():
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
-				<!--[if lte IE 8]><script type="text/javascript" src="{{ url_for('static', filename='css/ie/html5shiv.js')}}"></script><![endif]-->
-		<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.min.js')}}"></script>
-		<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.dropotron.min.js')}}"></script>
-		<script type="text/javascript" src="{{ url_for('static', filename='js/skel.min.js')}}"></script>
-		<script type="text/javascript" src="{{ url_for('static', filename='js/skel-layers.min.js')}}"></script>
-		<script type="text/javascript" src="{{ url_for('static', filename='js/init.js')}}"></script>
-		<noscript>
-			<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/skel.css')}}"/>
-			<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css')}}" />
-			<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style-wide.css')}}" />
-		</noscript>
-		<!--[if lte IE 8]><link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/ie/v8.css')}}" /><![endif]-->
-        </head>
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/skel.css')}}">
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css')}}">
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/style-wide.css')}}">
+	</head>
 	<body>
 
 		<!-- Wrapper -->
@@ -94,12 +85,12 @@ def predict_World_News():
 				<!-- Header -->
 					<div id="header" class="skel-panels-fixed">
 						<div id="logo">
-							<h1><a href="index.html">EmotioNews</a></h1>
+							<h1><a href="/">EmotioNews</a></h1>
 							<span class="tag">by Libazisa Kunda</span>
 						</div>
 						<nav id="nav">
 							<ul>
-								<li class="active"><a href="index.html">Homepage</a></li>
+								<li class="active"><a href="/">Homepage</a></li>
 							</ul>
 						</nav>
 					</div>
@@ -134,23 +125,24 @@ def predict_World_News():
 
 @app.route('/predict_comment', methods=['POST'])
 def predict_comment():
- input_sentence= request.form['message']
- message = [input_sentence]
- sequences = tokenizer.texts_to_sequences(message)
- data = pad_sequences(sequences, maxlen=200)
- #Exporting and Loading of the Deep Learning Model
- model.compile(loss='sparse_categorical_crossentropy',
-               optimizer='adam',
-               metrics=['accuracy'])
- sentiment = model.predict(data, batch_size=1, verbose = 2)[0]
- if(np.argmax(sentiment) == 0):
-    message_prediction = 0
- elif (np.argmax(sentiment) == 1):
-    message_prediction = 1
- elif (np.argmax(sentiment) == 2):
-    message_prediction = 2
- elif (np.argmax(sentiment) == 3):
-    message_prediction = 3
+ if request.method == "POST":
+	input_sentence= request.form['message']
+ 	message = [input_sentence]
+ 	sequences = tokenizer.texts_to_sequences(message)
+ 	data = pad_sequences(sequences, maxlen=200)
+ 	#Exporting and Loading of the Deep Learning Model
+ 	model.compile(loss='sparse_categorical_crossentropy',
+        	      optimizer='adam',
+               	      metrics=['accuracy'])
+ 	sentiment = model.predict(data, batch_size=1, verbose = 2)[0]
+ 	if(np.argmax(sentiment) == 0):
+    		message_prediction = 0
+ 	elif (np.argmax(sentiment) == 1):
+    		message_prediction = 1
+ 	elif (np.argmax(sentiment) == 2):
+    		message_prediction = 2
+ 	elif (np.argmax(sentiment) == 3):
+    		message_prediction = 3
  return render_template('emotion.html', prediction = message_prediction) 
 
 @app.route('/Predict_African_Stories')
@@ -205,19 +197,10 @@ def Predict_African_Stories():
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
-		<!--[if lte IE 8]><script type="text/javascript" src="{{ url_for('static', filename='css/ie/html5shiv.js')}}"></script><![endif]-->
-		<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.min.js')}}"></script>
-		<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.dropotron.min.js')}}"></script>
-		<script type="text/javascript" src="{{ url_for('static', filename='js/skel.min.js')}}"></script>
-		<script type="text/javascript" src="{{ url_for('static', filename='js/skel-layers.min.js')}}"></script>
-		<script type="text/javascript" src="{{ url_for('static', filename='js/init.js')}}"></script>
-		<noscript>
-			<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/skel.css')}}"/>
-			<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css')}}" />
-			<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style-wide.css')}}" />
-		</noscript>
-		<!--[if lte IE 8]><link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/ie/v8.css')}}" /><![endif]-->
-        </head>
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/skel.css')}}">
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css')}}">
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/style-wide.css')}}">
+	</head>
 	<body>
 
 		<!-- Wrapper -->
@@ -226,12 +209,12 @@ def Predict_African_Stories():
 				<!-- Header -->
 					<div id="header" class="skel-panels-fixed">
 						<div id="logo">
-							<h1><a href="index.html">EmotioNews</a></h1>
+							<h1><a href="/">EmotioNews</a></h1>
 							<span class="tag">by Libazisa Kunda</span>
 						</div>
 						<nav id="nav">
 							<ul>
-								<li class="active"><a href="index.html">Homepage</a></li>
+								<li class="active"><a href="/">Homepage</a></li>
 							</ul>
 						</nav>
 					</div>
