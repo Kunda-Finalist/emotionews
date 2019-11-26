@@ -10,18 +10,9 @@
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
-		<!--[if lte IE 8]><script type="text/javascript" src="{{ url_for('static', filename='css/ie/html5shiv.js')}}"></script><![endif]-->
-		<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.min.js')}}"></script>
-		<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.dropotron.min.js')}}"></script>
-		<script type="text/javascript" src="{{ url_for('static', filename='js/skel.min.js')}}"></script>
-		<script type="text/javascript" src="{{ url_for('static', filename='js/skel-layers.min.js')}}"></script>
-		<script type="text/javascript" src="{{ url_for('static', filename='js/init.js')}}"></script>
-		<noscript>
-			<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/skel.css')}}"/>
-			<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css')}}" />
-			<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style-wide.css')}}" />
-		</noscript>
-		<!--[if lte IE 8]><link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/ie/v8.css')}}" /><![endif]-->
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/skel.css')}}">
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css')}}">
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/style-wide.css')}}">
 	</head>
 	<body>
 
@@ -37,13 +28,13 @@
 					<div id="banner" class="container">
 						<section>
 							<p>This is a<strong> Sentiment Analysis</strong> system</p>
-							<a href="/comment" class="button medium"><input type="button" value="call_flask_funtion">Try a Comment</a>
+							<a href="/comment" class="button medium">Try a Comment</a>
 						</section>
 						<section>
-							<a href="/Predict_African_Stories" class="button medium"><input type="button" value="call_flask_funtion">News From Africa</a>
+							<a href="/Predict_African_Stories" class="button medium">News From Africa</a>
 						</section>
 						<section>							
-							<a href="/Predict_World_Stories" class="button medium"><input type="button" value="call_flask_funtion">News From Rest of World</a>
+							<a href="/Predict_World_Stories" class="button medium">News From Rest of World</a>
 						</section>
 					</div>
 					<!-- Copyright -->
