@@ -22,12 +22,11 @@
 				<!-- Header -->
 					<div id="header" class="skel-panels-fixed">
 						<div id="logo">
-							<h1><a href="index.html">EmotioNews</a></h1>
-							<span class="tag">by Libazisa Kunda</span>
+							<h1><a href="/">EmotioNews by Libazisa Kunda</a></h1>
 						</div>
 						<nav id="nav">
 							<ul>
-								<li class="active"><a href="index.html">Homepage</a></li>
+								<li class="active"><a href="/">Homepage</a></li>
 							</ul>
 						</nav>
 					</div>
@@ -38,7 +37,7 @@
 						<section>
 							<header class="major">
 								<h2>Test the Emotion of a Comment</h2>
-								<form action="{{ url_for('predict_comment')}}" method="POST">
+								<form action="//predict_comment" method="POST">
 		                                                <textarea name="message" rows="6" cols="50"></textarea>
                                                                 <br/>
                                                                 <input type="submit" class="btn-info" value="predict">
